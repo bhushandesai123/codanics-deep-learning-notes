@@ -121,6 +121,14 @@ gemini =1 million token [have largst token no.]
 1 token = 4 char [char includes words , symbol@ and space]
 llm creates one word which has highest probabilty at a time in output , 
 llm=dictionary of vocabs consist of general info 
+temprature = decides randomness of answer
+- same answ for same question again  --> t low -> 0-0.2 -> for factual answer --> we kp low like medical 
+- high temp --> movie ,poem , essay , 
+- mat -- 0.9 [probability]
+  gate -- 0.02
+  sofa -- 0.03
+0.9/2       0.02/2        0.03/2
+
 
 
 --------------------------------------------------------------------------------------------------
