@@ -112,24 +112,65 @@ Context Window: The maximum amount of text (input plus output) that a model can 
 Top-P (Nucleus Sampling): A technique that limits the model’s choices to a subset of tokens whose cumulative probability reaches a specific threshold.
 Top-K: A sampling method that restricts the model to choosing only from the $k$ most likely next tokens.
 
-Max tokens: Maximum number of tokens (words/characters) the AI can generate in a single response. [Your model: max_new_tokens=512]
 gpt 3.5 = 4096 tokens 
 gpt5 token window = 128k tokens 
 llama2 =4096 tokens 
 gemini =1 million token [have largst token no.]
 
+--------------------------------------------------------------------------------------------------------------
 1 token = 4 char [char includes words , symbol@ and space]
 llm creates one word which has highest probabilty at a time in output , 
 llm=dictionary of vocabs consist of general info 
 temprature = decides randomness of answer
+- low temp -> low creativity , high temp -> high creativity 
 - same answ for same question again  --> t low -> 0-0.2 -> for factual answer --> we kp low like medical 
 - high temp --> movie ,poem , essay , 
 - mat -- 0.9 [probability]
   gate -- 0.02
   sofa -- 0.03
-0.9/2       0.02/2        0.03/2
+temp=2
+new_probability_of_mat_if i change temperature to 2 = 0.9/[0.9/2 + 0.02/2  + 0.03/2]
+new_probability =[logits/temperature]*softmax
+when we set t low prob gets increased 
+Max tokens: Maximum number of tokens (words/characters) the AI can generate in a single response. [Your model: max_new_tokens=512]
+top-p  -> p-> prob-> Top-p: Picks tokens from smallest group whose total probability reaches p (we provide 90%-95%  ).
+top-k   -> Top-k: Limits sampling to exactly k most probable tokens (e.g., top 50), ignores all others.
+for below example if we give k=4 thn it will select first 4 tokens only and neglect next
+k=50
 
+the       0.3
+capital   0.2
+of        0.1
+india     0.1   
+  top-p = 0.7  top-p is 0.7 then above 4 words will b given because they tootal 0.7 prob and remove low prob 
+               words 
+is        0.1   dis
+new       0.1   dis
+delhi     0.05  discards    
+kolkatta  0.05  dis
+raipur    0.05  dis
+bhopal    0.05  dis
+total     1     
 
+SUMMARY 
+temp                             top-p                    top-k
+controls randomness            p=0.9-0.95                k=50 it will select top 50 words geenerated from llm vocab 
+low temp -> low creativity ,    effect creativity         
+high temp -> high creativity 
+T = 0-0.2 FActual
+    0.4-1 balanced creativity
+    1<    high creat
+
+-  we mostly used 1)temp  , 2) maxtokens to control output
+
+langchain
+framwork to create llm based apps
+langchain and llamaindex same but in llama index small pay required 
+-  langchain llm based app
+-  langgrapph agentic ai
+-  human mssage  =anything we ask to llm
+-  system messag =role w assign to llm 
+-  ai msg        =output msg
 
 --------------------------------------------------------------------------------------------------
 
