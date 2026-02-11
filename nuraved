@@ -170,12 +170,54 @@ langchain and llamaindex same but in llama index small pay required
 -  langgrapph agentic ai
 -  human mssage  =anything we ask to llm
 -  system messag =role w assign to llm 
--  ai msg        =output msg
+-  ai msg        =output msg 
+❌ WITHOUT LangChain (6 lines)
+from huggingface_hub import InferenceClient
+client = InferenceClient(token="hf_xxx")
+response = client.text_generation("Hello!", model="meta-llama/Llama-3.1-8B-Instruct")
+print(response)
 
---------------------------------------------------------------------------------------------------
-
-
+✅ WITH LangChain (10 lines - Your chatbot)
+from langchain_huggingface import HuggingFaceEndpoint
+llm = HuggingFaceEndpoint(repo_id="meta-llama/Llama-3.1-8B-Instruct")
+model = ChatHuggingFace(llm=llm)
+response = model.invoke("Hello!")
+print(response.content)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- lecture 6 ------------------------------------------------------
+- in messages first it runs system message then work on human message 
+-  HumanMessage  =anything we ask to llm
+-  SystemMessage =role w assign to llm 
+-  AIMessage Purpose:
+Primary: Stores AI model responses in conversation history
+Secondary: Can be used in few-shot examples (with example=True)
+("system","act as helpful assistant and translate {ip_language} into {op_language}" ),      ## REMEMBER   (   "system" , "           "  )   OR  SystemMessagePromptTemplate.from_template("act as helpful assistant...")  ==BOTH WORKS SAME
+("user","{text}")                                                                           ## REMEMBER   (   "user"   , "           "  )   OR  HumanMessagePromptTemplate.from_template("act as helpful assistant...")   ==BOTH WORKS SAME
+])
+
+# CORRECT CODE: Chain setup using LangChain and ChatOpenAI
+
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+
+# 1. TEMPLATE: Define the logic and variables.
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant that translates {input_language} to {output_language}"),
+    ("human", "{input}")
+])
+
+# 2. CHAIN: Combine the prompt and the model using the pipe (|) operator.
+model = ChatOpenAI(model="gpt-4o")
+chain = prompt | model
+
+# 3. INVOKE: Send data and get the result.
+output = chain.invoke({
+    "input_language": "English", 
+    "output_language": "Odia", 
+    "input": "I love programming"
+})
+
+print(output.content) # Result: ମୁଁ ପ୍ରୋଗ୍ରାମିଂକୁ ଭଲ ପାଏ |
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
