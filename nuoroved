@@ -228,7 +228,7 @@ chatPromptTemplate consist of list of tuples
 chatPromptTemplate=[(),()]
 output.response_metadata = no.of tokens + other info
 
--  SystemMessage =role w assign to llm -> if we give role as coding expert and ask question on heart attack [medical question] then LLM will still answer the medical question but frame it through a coding lens
+- SystemMessage =role w assign to llm -> if we give role as coding expert and ask question on heart attack [medical question] then LLM will still answer the medical question but frame it through a coding lens
 -  
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
