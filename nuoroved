@@ -229,9 +229,59 @@ chatPromptTemplate=[(),()]
 output.response_metadata = no.of tokens + other info
 
 - SystemMessage =role w assign to llm -> if we give role as coding expert and ask question on heart attack [medical question] then LLM will still answer the medical question but frame it through a coding lens
--  
-
+- chain.invoke("Tata")
+- chain.invoke("stock":"Tata")
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- lecture 8 ------------------------------------------------------
+-  if u dont give human message and system mssage and ai message then use
+model.invoke("what is python")
+
+-   if u ai message then use
+msg=[("humanmessage","what is python")
+("systemmessage","act as ai engineer")]
+model.invoke(msg)
+-  when you want to input variable
+message = ['system', You are experienced (role). Answer all the query related to that only else say sorry,
+("human', 'this is the (query)')]
+
+types
+1- 0 shot
+   2.1 Zero-Shot Prompting
+   What it is: Asking the Al to perform a task without providing any examples.
+   When to use: For straightforward tasks where the Al already understands what you want.   
+   sys_msg = "you are experince reviwe critic, based on the review tell weather the product belong to which categories 1.good, 2.bad and 3. ok" 
+   human_msg="These is the review: (review)"
+   msg = [('system', sys_msg), ('human', human_msg)]
+   template =ChatPromptTemplate(msg)
+
+2- one shot prompting
+   What it is: Providing exactly one example to show the Al what you want.
+   When to use: When you need to demonstrate a specific format or style.
+   #One-shot example: Product description generation
+   one_shot_template Chat PromptTemplate([
+   "system", "You generate product name and parameters for e-commerce review message"),
+   'human", "I've been using the Samsung Galaxy S24 Ultra (12GB RAM 256GB Storage) for over a month now, and it has exceeded my expectations in almost every area.").
+   ai", "product name: Samsung Galaxy 524 Ultra, parametrs:12GB RAM 256GB Storage").
+   ['human", "this is the e-commerce review message: (rev_msg}")])
+   chain one shot template | llm
+-  *** in this we use 2 human message - first human mssage is for giving 1 example and other  for human input ***
+
+2- few shot
+   giving more than 1 ex is better but it increases [1] token [2] response time from llm
+
+
+3- 2 shot
+
+
+4- chain of thought
+   
+
+5- tree of thought
+6- 
+
+
+
+
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
