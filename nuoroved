@@ -274,18 +274,35 @@ types
 
 
 4- chain of thought
-   
+   2.4 Chain-of-Thought Prompting
+   What it is: Asking the Al to think step-by-step and show its reasoning.
+   When to use: For complex problems that require logical reasoning or multi-step solutions.
+   Chain-of-thought example: Math word problems
+   cot_template ChatPromptTemplate.from messages(
+"system", "You solve math problems step by step. Always show your reasoning clearly.").
+"human", """Let's work through this step by step.
+Problem: [problem] Please think through this step by step:
+1. What information do we have?
+2. What do we need to find?
+3. What steps do we need to take?
+4. Show the calculations
+5. State the final answer
+   Test with a word problem
+math problem = "A store sells books for $15 each. If they offer a 20% discount for buying 5 or more books, how much would it cost to buy 8 books?
 
 5- tree of thought
+
 6- 
-
-
-
-
-
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+-------------------------------------------- lecture 8 ------------------------------------------------------
+Stream lit
+- To create web app
+- to show POc (proof of Concept)
+- automatically create html in background 
+- 
+uv add streamlit
+- setting run on save -> if u change in main.py then automaticaaly changes will reflect in ui
+- 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
