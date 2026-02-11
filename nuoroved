@@ -187,7 +187,7 @@ print(response.content)
 -------------------------------------------- lecture 6 ------------------------------------------------------
 - in messages first it runs system message then work on human message 
 -  HumanMessage  =anything we ask to llm
--  SystemMessage =role w assign to llm 
+-  SystemMessage =role w assign to llm -> if we give role as coding expert and ask question on heart attack [medical question] then LLM will still answer the medical question but frame it through a coding lens
 -  AIMessage Purpose:
 Primary: Stores AI model responses in conversation history
 Secondary: Can be used in few-shot examples (with example=True)
@@ -211,7 +211,7 @@ model = ChatOpenAI(model="gpt-4o")
 chain = prompt | model
 
 # 3. INVOKE: Send data and get the result.
-output = chain.invoke({
+output = chain.invoke({                   # chain.invoke la format lagat nahi -> ready_prompt.format la lagate 
     "input_language": "English", 
     "output_language": "Odia", 
     "input": "I love programming"
@@ -226,6 +226,10 @@ first give ur basic promt and ask gpt to refine ur prompt because o/p depends on
 -------------------------------------------- lecture 7 ------------------------------------------------------
 chatPromptTemplate consist of list of tuples
 chatPromptTemplate=[(),()]
+output.response_metadata = no.of tokens + other info
+
+-  SystemMessage =role w assign to llm -> if we give role as coding expert and ask question on heart attack [medical question] then LLM will still answer the medical question but frame it through a coding lens
+-  
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
